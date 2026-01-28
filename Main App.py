@@ -1,6 +1,46 @@
+import requests
 import streamlit as st
 import pandas as pd
 import numpy as np
+
+def fetch_football_data(api_key, league_code='PL'):
+    """
+    Fetches finished match results for a specific league.
+    League Codes: 'PL' (Premier League), 'PD' (La liga), 'BL1 (Bundesliga) 
+    
+    """
+url = f"https://api.football-data.org/v4/competitions/{league_code}/matches"
+headers = {'X-Auth-Token':api_key}
+params = {'status':'FINISHED'} #We only want past matches to calculate performance
+try:
+    response = request.get(url, headers=headers, params=params)
+    response.raise_for_status() #Check for errors
+    data = response.json()
+    matches =[]
+    for match in data['matches']:
+        matches.append({
+            'Date': match['utcDate'],
+            'HomeTeam': match['homeTeam']['name'],
+            'AwayTeam': match['awayTeam']['name'],
+            'HomeGoals': match['score']['fullTime']['home'],
+            'AwayGoals': match['score']['fullTime']['away'],
+        
+        })
+    return pd.DataFrame(matches)
+except Exception as e:
+    st.error(f"Error fetching data:{e}")
+    return None
+
+# Use caching so we only fetch data once every 12hours
+@st.cache_data(ttl=43200)
+def get_cached_data(api_key):
+    return fetch_football_data(api_key)
+
+API_KEY = st.secrets["FOOTBALL_API_KEY"]
+df = get_cached_data(API_KEY)
+
+if df is not None:
+    st.success(f"Successfully loaded {len(df)} matches!")
 
 # Set up the web page
 st.set_page_config(page_title="Pro Football Predictor", layout"wide")
@@ -57,3 +97,4 @@ def calculate_team_stats(df):
 
         st.write(f"### Predicted Score: {score[0]} - {score[1]}")
         st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}")
+
