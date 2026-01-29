@@ -54,7 +54,7 @@ def get_cached_data(api_key, league_code):
     return fetch_football_data(api_key, league_code)
 
 API_KEY = st.secrets["FOOTBALL_API_KEY"]
-df = get_cached_data(API_KEY)
+df = get_cached_data(API_KEY, league_code)
 
 if df is not None:
     st.success(f"Successfully loaded {len(df)} matches!")
@@ -167,6 +167,7 @@ if df is not None:
     
        # st.write(f"### Predicted Score: {score[0]} - {score[1]}")
       #  st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}") '''
+
 
 
 
