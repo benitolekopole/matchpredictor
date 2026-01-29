@@ -100,44 +100,44 @@ if df is not None:
         st.write(f"### Predicted Score: {score[0]} - {score[1]}")
         st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}")
     
-  '''  def calculate_team_stats(df):
+   #def calculate_team_stats(df):
         # Calculate league averages
-        avg_home_goals = df['HomeGoals'].mean()
-        avg_away_goals = df['AwayGoals'].mean()
+  #      avg_home_goals = df['HomeGoals'].mean()
+  #      avg_away_goals = df['AwayGoals'].mean()
     
         #Home Attack Strength = (Team's Home Goals / Home Matches) / League Avg Home Goals
-        home_stats = df.groupby('HomeTeam').agg({'HomeGoals':'mean', 'AwayGoals':'mean'})
-        home_stats.columns = ['Att_Home', 'Def_Home']
-        home_stats['Att_Home'] /= avg_home_goals
-        home_stats['Def_Home'] /= avg_away_goals 
+   #     home_stats = df.groupby('HomeTeam').agg({'HomeGoals':'mean', 'AwayGoals':'mean'})
+    #    home_stats.columns = ['Att_Home', 'Def_Home']
+     #   home_stats['Att_Home'] /= avg_home_goals
+      #  home_stats['Def_Home'] /= avg_away_goals 
     
         #Away Attack Strength = (Team's Away Goals / Away Matches) / League Avg Away Goals
-        away_stats = df.groupby('AwayTeam').agg({'AwayGoals':'mean', 'HomeGoals':'mean'})
-        away_stats.columns = ['Att_Away', 'Def_Away']
-        away_stats['Att_Away'] /= avg_away_goals
-        away_stats['Def_Away'] /= avg_home_goals 
+       # away_stats = df.groupby('AwayTeam').agg({'AwayGoals':'mean', 'HomeGoals':'mean'})
+        #away_stats.columns = ['Att_Away', 'Def_Away']
+        #away_stats['Att_Away'] /= avg_away_goals
+        #away_stats['Def_Away'] /= avg_home_goals 
     
-        return home_stats, away_stats, avg_home_goals, avg_away_goals
+       # return home_stats, away_stats, avg_home_goals, avg_away_goals
     
-    def predict_match(home_team, away_team, home_stats, away_stats, avg_h, avg_a):
+    #def predict_match(home_team, away_team, home_stats, away_stats, avg_h, avg_a):
         #Expected goals for Home Team
-        home_exp = home_stats.loc[home_team, 'Att_Home'] * away_stats.loc[away_team, 'Def_Away'] * avg_h
+     #   home_exp = home_stats.loc[home_team, 'Att_Home'] * away_stats.loc[away_team, 'Def_Away'] * avg_h
     
         #Expected goals for Away Team
-        away_exp = away_stats.loc[away_team, 'Att_Away'] * home_stats.loc[home_team, 'Def_Home'] * avg_a
+      #  away_exp = away_stats.loc[away_team, 'Att_Away'] * home_stats.loc[home_team, 'Def_Home'] * avg_a
     
         #Calaculate probability matrix (up to 5 goals each)
-        matrix = np.outer(poisson.pmf(range(6), home_exp), poisson.pmf(range(6),away_exp))
+       # matrix = np.outer(poisson.pmf(range(6), home_exp), poisson.pmf(range(6),away_exp))
     
         # Win/Draw/Loss Probabilities
-        prob_home = np.sum(np.tril(matrix, -1))
-        prob_draw = np.sum(np.diag(matrix))
-        prob_away = np.sum(np.triu(matrix, 1))
+       # prob_home = np.sum(np.tril(matrix, -1))
+        #prob_draw = np.sum(np.diag(matrix))
+        #prob_away = np.sum(np.triu(matrix, 1))
     
         # Most likely score
-        most_likely_score = np.unravel_index(np.argmax(matrix), matrix.shape)
+        #most_likely_score = np.unravel_index(np.argmax(matrix), matrix.shape)
     
-        return prob_home, prob_draw, prob_away, most_likely_score
+        #return prob_home, prob_draw, prob_away, most_likely_score
     
         #Assuming 'data.csv' has columns:HomeTeam, AwayTeam, HomeGoals, AwayGoals
         #df = pd.read_csv('match_history.csv')
@@ -153,6 +153,7 @@ if df is not None:
     
        # st.write(f"### Predicted Score: {score[0]} - {score[1]}")
       #  st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}") '''
+
 
 
 
