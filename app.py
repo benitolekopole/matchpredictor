@@ -2,6 +2,7 @@ import requests
 import streamlit as st
 import pandas as pd
 import numpy as np
+from scipy.stats import poisson
 
 # Set up the web page
 st.set_page_config(page_title="Pro Football Predictor", layout="wide")
@@ -153,6 +154,7 @@ if df is not None:
     
        # st.write(f"### Predicted Score: {score[0]} - {score[1]}")
       #  st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}") '''
+
 
 
 
