@@ -24,7 +24,6 @@ try:
             'AwayTeam': match['awayTeam']['name'],
             'HomeGoals': match['score']['fullTime']['home'],
             'AwayGoals': match['score']['fullTime']['away'],
-        
         })
     return pd.DataFrame(matches)
 except Exception as e:
@@ -97,6 +96,7 @@ def calculate_team_stats(df):
 
         st.write(f"### Predicted Score: {score[0]} - {score[1]}")
         st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}")
+
 
 
 
