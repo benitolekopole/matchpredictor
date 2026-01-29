@@ -45,7 +45,7 @@ df = get_cached_data(API_KEY)
 if df is not None:
     st.success(f"Successfully loaded {len(df)} matches!")
     #Get a unique list of teams, sorted alphabetically
-    all_teams = sorted(df['HomeTeam'].unique())
+    #all_teams = sorted(df['HomeTeam'].unique())
     #st.write("### 🏟️ Match Predictor")
     
     def calculate_team_stats(df):
@@ -88,17 +88,20 @@ if df is not None:
         return prob_home, prob_draw, prob_away, most_likely_score
     
         #Assuming 'data.csv' has columns:HomeTeam, AwayTeam, HomeGoals, AwayGoals
-        df = pd.read_csv('match_history.csv')
-        h_stats, a_stats, avg_h, avg_a =calculate_team_stats(df)
+        #df = pd.read_csv('match_history.csv')
+        h_stats, a_stats, avg_h, avg_a = calculate_team_stats(df)
     
         col1, col2 = st.columns(2)
-        with col1: home_choice = st.selectbox("Select Home Team", h_stats.index)
-        with col2: away_choice = st.selectbox("Select Away Team", a_stats.index)
+        with col1: 
+            home_choice = st.selectbox("Select Home Team", h_stats.index)
+        with col2: 
+            away_choice = st.selectbox("Select Away Team", a_stats.index)
     
         if st.button("Predict Outcome"):p_h, p_d, p_a, score = predict_match(home_choice, away_choice, h_stats, a_stats, avg_h, avg_a)
     
         st.write(f"### Predicted Score: {score[0]} - {score[1]}")
         st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}")
+
 
 
 
