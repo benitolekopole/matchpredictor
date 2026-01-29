@@ -50,8 +50,8 @@ def fetch_football_data(api_key, league_code):
 
 # Use caching so we only fetch data once every 12hours
 @st.cache_data(ttl=43200)
-def get_cached_data(api_key, league code):
-    return fetch_football_data(api_key, league code)
+def get_cached_data(api_key, league_code):
+    return fetch_football_data(api_key, league_code)
 
 API_KEY = st.secrets["FOOTBALL_API_KEY"]
 df = get_cached_data(API_KEY)
@@ -167,6 +167,7 @@ if df is not None:
     
        # st.write(f"### Predicted Score: {score[0]} - {score[1]}")
       #  st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}") '''
+
 
 
 
