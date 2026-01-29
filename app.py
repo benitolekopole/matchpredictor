@@ -3,6 +3,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+# Set up the web page
+st.set_page_config(page_title="Pro Football Predictor", layout="wide")
+st.title("⚽ European Football Match Predictor")
+
 def fetch_football_data(api_key, league_code='PL'):
     """
     Fetches finished match results for a specific league.
@@ -40,10 +44,6 @@ df = get_cached_data(API_KEY)
 
 if df is not None:
     st.success(f"Successfully loaded {len(df)} matches!")
-
-# Set up the web page
-st.set_page_config(page_title="Pro Football Predictor", layout="wide")
-st.title("⚽ European Football Match Predictor")
 
 def calculate_team_stats(df):
     # Calculate league averages
@@ -96,6 +96,7 @@ def calculate_team_stats(df):
 
         st.write(f"### Predicted Score: {score[0]} - {score[1]}")
         st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}")
+
 
 
 
