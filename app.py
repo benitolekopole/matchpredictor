@@ -17,7 +17,7 @@ def fetch_football_data(api_key, league_code='PL'):
     headers = {'X-Auth-Token':api_key}
     params = {'status':'FINISHED'} #We only want past matches to calculate performance
     try:
-        response = request.get(url, headers=headers, params=params)
+        response = requests.get(url, headers=headers, params=params)
         response.raise_for_status() #Check for errors
         data = response.json()
         matches =[]
@@ -96,6 +96,7 @@ def calculate_team_stats(df):
 
         st.write(f"### Predicted Score: {score[0]} - {score[1]}")
         st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}")
+
 
 
 
