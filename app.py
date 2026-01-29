@@ -100,7 +100,7 @@ if df is not None:
         st.write(f"### Predicted Score: {score[0]} - {score[1]}")
         st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}")
     
-  """  def calculate_team_stats(df):
+  '''  def calculate_team_stats(df):
         # Calculate league averages
         avg_home_goals = df['HomeGoals'].mean()
         avg_away_goals = df['AwayGoals'].mean()
@@ -152,7 +152,8 @@ if df is not None:
         #if st.button("Predict Outcome"):p_h, p_d, p_a, score = predict_match(home_choice, away_choice, h_stats, a_stats, avg_h, avg_a)
     
        # st.write(f"### Predicted Score: {score[0]} - {score[1]}")
-      #  st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}") """
+      #  st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}") '''
+
 
 
 
