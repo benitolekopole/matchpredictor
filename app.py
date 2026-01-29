@@ -7,8 +7,21 @@ from scipy.stats import poisson
 # Set up the web page
 st.set_page_config(page_title="Pro Football Predictor", layout="wide")
 st.title("⚽ European Football Match Predictor")
+leagues = {
+    "Premier League (England)":"PL",
+    "La Liga (Spain)":"PD",
+    "Bundesliga (Germany)":"BL1",
+    "Serie A (Italy)":"SA",
+    "Ligue 1 (France)":"FL1",
+    "Eredivisie (Netherlands)":"DED",
+    "Primeira Liga (Portugal)":"PPL"
+}
 
-def fetch_football_data(api_key, league_code='PL'):
+st.sidebar.header("Configuration")
+selected_league_name = st.sidebar.selectbox("Select League", list(leagues.keys()))
+league_code = leagues[selected_league_name]
+
+def fetch_football_data(api_key, league_code):
     """
     Fetches finished match results for a specific league.
     League Codes: 'PL' (Premier League), 'PD' (La liga), 'BL1 (Bundesliga) 
@@ -154,6 +167,7 @@ if df is not None:
     
        # st.write(f"### Predicted Score: {score[0]} - {score[1]}")
       #  st.write(f"** Win Probability : ** {home_choice} : {p_h: .1%}, Draw: {p_d: .1%}, {away_choice}: {p_a: .1%}") '''
+
 
 
 
